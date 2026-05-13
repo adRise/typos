@@ -22,6 +22,12 @@ jobs:
     needs: [test, msrv, docs, rustfmt, clippy]
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          use-policy-store: true
+          api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
       - name: Done
         run: exit 0
   test:
@@ -33,6 +39,12 @@ jobs:
     continue-on-error: ${{ matrix.rust != 'stable' }}
     runs-on: ${{ matrix.os }}
     steps:
+    - name: Harden the runner
+      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+      with:
+        use-policy-store: true
+        api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install Rust
@@ -54,6 +66,12 @@ jobs:
     name: "Check MSRV: 1.64.0"
     runs-on: ubuntu-latest
     steps:
+    - name: Harden the runner
+      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+      with:
+        use-policy-store: true
+        api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install Rust
@@ -73,6 +91,12 @@ jobs:
     name: Docs
     runs-on: ubuntu-latest
     steps:
+    - name: Harden the runner
+      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+      with:
+        use-policy-store: true
+        api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install Rust
@@ -90,6 +114,12 @@ jobs:
     name: rustfmt
     runs-on: ubuntu-latest
     steps:
+    - name: Harden the runner
+      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+      with:
+        use-policy-store: true
+        api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install Rust
@@ -108,6 +138,12 @@ jobs:
     name: clippy
     runs-on: ubuntu-latest
     steps:
+    - name: Harden the runner
+      uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+      with:
+        use-policy-store: true
+        api-key: ${{ secrets.STEP_SECURITY_API_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install Rust
